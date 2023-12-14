@@ -11,12 +11,12 @@ public class RandomMatches
     private Compare _compare = new Compare();
     public string[] RandomMatch(List<Vector> app, List<Vector> installed)
     {
-        var matchingWords = _compare.CompareApps(installed, app);
+        var matchingWords = _compare.GetIntalledKeywords(installed);
 
         var apps = new List<string>();
         foreach (var a in app)
         {
-            if (matchingWords.Exists(word => a.Keywords.Contains(word)))
+            if (_compare.HasKeywords(matchingWords, a))
             {
                 apps.Add(a.Name);
             }
