@@ -8,7 +8,7 @@ namespace MatchingAlgorithms;
 */
 public class RandomMatches
 {
-    public string[] RandomMatch(Vector[] app, Vector[] installed)
+    public string[] RandomMatch(List<Vector> app, List<Vector> installed)
     {
         var matchingWords = new List<string>();
         
