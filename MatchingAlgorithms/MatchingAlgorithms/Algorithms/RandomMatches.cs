@@ -8,20 +8,10 @@ namespace MatchingAlgorithms;
 */
 public class RandomMatches
 {
+    private Compare _compare = new Compare();
     public string[] RandomMatch(List<Vector> app, List<Vector> installed)
     {
-        var matchingWords = new List<string>();
-        
-        foreach (var a in installed)
-        {
-            foreach (var keyW in a.Keywords)
-            {
-                if (!matchingWords.Contains(keyW))
-                {
-                    matchingWords.Add(keyW);
-                }
-            }
-        }
+        var matchingWords = _compare.CompareApps(installed, app);
 
         var apps = new List<string>();
         foreach (var a in app)
