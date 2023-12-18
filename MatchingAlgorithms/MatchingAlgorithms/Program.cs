@@ -14,3 +14,7 @@ foreach (var a in apps)
 {
     Console.WriteLine(a);
 }
+
+SoftCodedProbabilities probabilities = new SoftCodedProbabilities();
+
+probabilities.TestSoftCodedProbability(installed, available);
