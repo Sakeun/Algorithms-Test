@@ -23,10 +23,9 @@
             probabilities = new double[inputProbabilities.Count];
             alias = new int[inputProbabilities.Count];
 
-            Dictionary<int, double> inputProbabilitiesCopy = inputProbabilities.ToDictionary(entry => entry.Key, entry => entry.Value);
-            inputProbabilitiesCopy = NormalizeInputProbabilities(inputProbabilities);
+            inputProbabilities = NormalizeInputProbabilities(inputProbabilities);
 
-            BuildAliasTables(inputProbabilitiesCopy);
+            BuildAliasTables(inputProbabilities);
         }
 
         public int NextAppId()
