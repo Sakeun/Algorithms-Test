@@ -56,4 +56,42 @@ public class Builders
         };
     }
 
+    public Dictionary<int, double> ProbabilitiesBuilder(int count)
+    {
+        Dictionary<int, double> result = new Dictionary<int, double>();
+        List<double> probabilityList = new List<double>();
+        //result.Add(0, 0.2);
+        //result.Add(1, 0.2);
+        //result.Add(2, 0.4);
+        //result.Add(3, 0.3);
+        //result.Add(4, 0.1);
+        //result.Add(5, 0);
+        double scale = 0.1;
+
+        for (int i = 0; i < count; i++)
+        {
+            probabilityList.Add(scale * Math.Sqrt(scale));
+        }
+
+        Random random = new Random();
+
+        result.Add(count, 0.000001);
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = random.Next(count);
+            result.Add(i, probabilityList[randomIndex]);
+        }
+        return result;
+    }
+
+    public Dictionary<int, double> FixedProbabilitiesBuilder(int count)
+    {
+        var result = new Dictionary<int, double>();
+        for (int i = 0; i < count; i++)
+        {
+            result.Add(i, i / 10);
+        }
+        return result;
+    }
+
 }
