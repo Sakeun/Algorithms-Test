@@ -5,27 +5,27 @@ public class SoftCodedProbabilities
     #region Algorithm
     private struct Entry {
         public double accumulatedWeight;
-        public Vector item;
+        public string item;
     }
 
     private List<Entry> _entries = new List<Entry>();
     private double accumulatedWeight;
     private Random rand = new Random();
 
-    private void AddEntry(Vector item, double weight) {
+    public void AddEntry(string item, double weight) {
         accumulatedWeight += weight;
         _entries.Add(new Entry { item = item, accumulatedWeight = accumulatedWeight });
     }
 
-    private string GetRandom() {
+    public string GetRandom() {
         var r = rand.NextDouble() * accumulatedWeight;
         foreach (Entry entry in _entries) {
             if (entry.accumulatedWeight >= r)
             {
                 var curr = entry.item;
                 accumulatedWeight -= entry.accumulatedWeight;
-                _entries.Remove(entry);
-                return curr.Name;
+                _entries.RemoveAll(e => e.item == curr);
+                return curr;
             }
         }
         return default;
@@ -59,7 +59,7 @@ public class SoftCodedProbabilities
                 {
                     var result = form.WeightFormula(keywords, a);
 
-                    AddEntry(a, result);
+                    AddEntry(a.Name, result);
                 }
             }
 

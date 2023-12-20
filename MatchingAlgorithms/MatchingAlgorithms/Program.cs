@@ -72,3 +72,12 @@ stopwatch.Stop();
 
 Console.WriteLine("-------------------------------------");
 Console.WriteLine($"Number generation completed in {stopwatch.ElapsedMilliseconds} ms");
+
+MainAlgorithm algorithm = new MainAlgorithm();
+
+var result = algorithm.GetBestMatches();
+
+foreach (var r in result)
+{
+    Console.WriteLine(r);
+}
