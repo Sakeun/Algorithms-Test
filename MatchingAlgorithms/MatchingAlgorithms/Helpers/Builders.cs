@@ -61,12 +61,7 @@ public class Builders
     {
         Dictionary<int, double> result = new Dictionary<int, double>();
         List<double> probabilityList = new List<double>();
-        //result.Add(0, 0.2);
-        //result.Add(1, 0.2);
-        //result.Add(2, 0.4);
-        //result.Add(3, 0.3);
-        //result.Add(4, 0.1);
-        //result.Add(5, 0);
+
         double scale = 0.1;
 
         for (int i = 0; i < count; i++)
@@ -118,7 +113,7 @@ public class Builders
             {
                 if (v.Keywords.Contains(keyword))
                 {
-                    edges.Add(new Edge(){Vector1 = vector.Name, Vector2 = v.Name, Weight = _formula.WeightFormula(v.Keywords.ToList(), vector)});
+                    edges.Add(new Edge() { Vector1 = vector.Name, Vector2 = v.Name, Weight = _formula.WeightFormula(v.Keywords.ToList(), vector) });
                     break;
                 }
             }
@@ -139,7 +134,7 @@ public class Builders
             new() { Name = "6", Keywords = new[]{"6", "8", "7"}},
         };
     }
-    
+
     public List<Vector> SmallInstalledListBuilder()
     {
         return new List<Vector>()
@@ -162,7 +157,7 @@ public class Builders
         {
             edges.AddRange(GetAllEdges(vector, installed));
         }
-        
+
         Console.WriteLine("edges: ");
         foreach (var e in edges)
         {
@@ -179,23 +174,23 @@ public class Builders
             new() {App = "1", Word = "1"},
             new() {App = "1", Word = "2"},
             new() {App = "1", Word = "2"},
-            
+
             new() {App = "2", Word = "2"},
             new() {App = "2", Word = "3"},
             new() {App = "2", Word = "4"},
-            
+
             new() {App = "3", Word = "1"},
             new() {App = "3", Word = "4"},
             new() {App = "3", Word = "3"},
-            
+
             new() {App = "4", Word = "1"},
             new() {App = "4", Word = "2"},
             new() {App = "4", Word = "3"},
-            
+
             new() {App = "5", Word = "6"},
             new() {App = "5", Word = "2"},
             new() {App = "5", Word = "7"},
-            
+
             new() {App = "6", Word = "6"},
             new() {App = "6", Word = "8"},
             new() {App = "6", Word = "7"},

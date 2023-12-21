@@ -1,8 +1,5 @@
 ﻿namespace MatchingAlgorithms.Algorithms
 {
-    /// <summary>
-    /// Implementatie van Vose's Alias Method. Let op algoritme vereist een som van kansen van 1.0
-    /// </summary>
     public class AliasMethod
     {
         private readonly Random random;
