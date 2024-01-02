@@ -7,8 +7,8 @@ namespace MatchingAlgorithms
     public class RandomizerTests
     {
         public bool VerboseTestSteps { get; set; } = false;
-        private int amountOfApps = 10000;
-        private int amountOfRecommendations = 10000;
+        private int amountOfApps = 100;
+        private int amountOfRecommendations = 100000;
 
         private Dictionary<int, double> probabilities;
         private Builders builder = new Builders();
@@ -49,26 +49,26 @@ namespace MatchingAlgorithms
             }
 
             //stopwatch.Stop();
-            //if (VerboseTestSteps)
-            //{
-            //    Console.WriteLine("-------------------------------------");
-            //    Console.WriteLine("Kansen:");
-            //    foreach (var number in NumberCount.OrderBy(x => x.Key))
-            //    {
-            //        Console.WriteLine($"{number.Key}: {probabilities[number.Key]}");
-            //    }
+            if (VerboseTestSteps)
+            {
+                Console.WriteLine("-------------------------------------");
+                Console.WriteLine("Kansen:");
+                foreach (var number in NumberCount.OrderBy(x => x.Key))
+                {
+                    Console.WriteLine($"{number.Key}: {probabilities[number.Key]}");
+                }
 
-            //    Console.WriteLine("-------------------------------------");
-            //    foreach (KeyValuePair<int, int> number in NumberCount.OrderBy(x => x.Key))
-            //    {
-            //        if (number.Key < 10)
-            //        {
-            //            Console.Write(" ");
-            //        }
-            //        Console.WriteLine($"{number.Key}: {number.Value} keer");
-            //    }
-            //}
-            //Console.WriteLine("-------------------------------------");
+                Console.WriteLine("-------------------------------------");
+                foreach (KeyValuePair<int, int> number in NumberCount.OrderBy(x => x.Key))
+                {
+                    if (number.Key < 10)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine($"{number.Key}: {number.Value} keer");
+                }
+            }
+            Console.WriteLine("-------------------------------------");
             //Console.WriteLine($"Number generation completed in {stopwatch.ElapsedMilliseconds} ms");
         }
         [Benchmark]
@@ -105,7 +105,8 @@ namespace MatchingAlgorithms
 
         private void ConstructProbabilities(int amountOfApps)
         {
-            probabilities = builder.ProbabilitiesBuilder(amountOfApps);
+            probabilities = builder.FixedProbabilitiesBuilder(amountOfApps);
+            //probabilities = builder.ProbabilitiesBuilder(amountOfApps);
         }
     }
 }

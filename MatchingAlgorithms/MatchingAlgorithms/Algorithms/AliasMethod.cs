@@ -3,10 +3,9 @@
     public class AliasMethod
     {
         private readonly Random random;
-
         private readonly int[] appIds;
-        private readonly int[] alias;
-        private readonly double[] probabilities;
+        private readonly Dictionary<int, int> alias;
+        private readonly Dictionary<int, double> probabilities;
 
         public AliasMethod(Dictionary<int, double> inputProbabilities)
         {
@@ -15,49 +14,40 @@
                 throw new ArgumentException("inputProbabilities not valid");
             }
 
+            probabilities = new Dictionary<int, double>();
+            alias = new Dictionary<int, int>();
+
             appIds = inputProbabilities.Keys.ToArray();
             random = new Random();
-            probabilities = new double[inputProbabilities.Count];
-            alias = new int[inputProbabilities.Count];
 
             inputProbabilities = NormalizeInputProbabilities(inputProbabilities);
 
-            BuildAliasTables(inputProbabilities);
+            BuildAliasTable(inputProbabilities);
         }
 
         public int NextAppId()
         {
-            int column = random.Next(probabilities.Length);
+            int column = random.Next(probabilities.Keys.Count);
 
-            bool coinToss = random.NextDouble() < probabilities[column];
+            bool coinToss = random.NextDouble() < probabilities[appIds[column]];
 
             if (coinToss)
             {
                 return appIds[column];
             }
-            return alias[column];
+            return alias[appIds[column]];
         }
 
         private bool InputProbabilitiesIsValid(Dictionary<int, double> inputProbabilities)
         {
-            if (inputProbabilities == null)
-            {
-                return false;
-            }
-
-            if (inputProbabilities.Count == 0)
-            {
-                return false;
-            }
-
-            return true;
+            return inputProbabilities != null && inputProbabilities.Count > 0;
         }
 
         private Dictionary<int, double> NormalizeInputProbabilities(Dictionary<int, double> inputProbabilities)
         {
             double sum = inputProbabilities.Values.Sum();
 
-            if (sum == 1.0)
+            if (sum.Equals(1.0))
             {
                 return inputProbabilities;
             }
@@ -66,11 +56,10 @@
             {
                 inputProbabilities[key] /= sum;
             }
-
             return inputProbabilities;
         }
 
-        private void BuildAliasTables(Dictionary<int, double> inputProbabilities)
+        private void BuildAliasTable(Dictionary<int, double> inputProbabilities)
         {
             Stack<int> small = new Stack<int>();
             Stack<int> large = new Stack<int>();
@@ -121,12 +110,14 @@
         {
             while (small.Count > 0)
             {
-                probabilities[small.Pop()] = 1.0;
+                int key = small.Pop();
+                probabilities[key] = 1.0;
             }
 
             while (large.Count > 0)
             {
-                probabilities[large.Pop()] = 1.0;
+                int key = large.Pop();
+                probabilities[key] = 1.0;
             }
         }
     }

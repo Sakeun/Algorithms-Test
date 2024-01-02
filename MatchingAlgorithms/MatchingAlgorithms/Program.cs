@@ -31,10 +31,9 @@ using MatchingAlgorithms;
 //    Console.WriteLine(r);
 //}
 
-//RandomizerTests tests = new RandomizerTests();
+RandomizerTests tests = new RandomizerTests();
 //tests.VerboseTestSteps = false;
-//tests.AliasMethodTest(10000000, 10000000);
+//tests.AliasMethodTest();
 //tests.SoftCodedProbabilitiesTest(10000000, 10000000);
-
 //var summary = BenchmarkRunner.Run<AlgoritmTests>();
 var summary = BenchmarkRunner.Run<RandomizerTests>();
