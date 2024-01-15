@@ -3,5 +3,5 @@
 using BenchmarkDotNet.Running;
 using MatchingAlgorithms;
 
-//var summaryAlgorithms = BenchmarkRunner.Run<AlgoritmTests>();
+var summaryAlgorithms = BenchmarkRunner.Run<AlgoritmTests>();
 var summaryRandomizer = BenchmarkRunner.Run<RandomizerTests>();
