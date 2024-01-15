@@ -24,19 +24,18 @@ public class RandomMatches
 
         var randomNums = GenerateNumbers(apps);
 
-
-        return new []{apps[randomNums[0]], apps[randomNums[1]], apps[randomNums[2]]};
+        return new[] { apps[randomNums[0]], apps[randomNums[1]], apps[randomNums[2]] };
     }
-    
+
     private int[] GenerateNumbers(ICollection arr)
-    {        
+    {
         Random rand = new Random();
         var randomNums = new int[3];
 
         for (int i = 0; i < 3; i++)
         {
             var j = rand.Next(0, arr.Count);
-            while(randomNums.Contains(j))
+            while (randomNums.Contains(j))
             {
                 j = rand.Next(0, arr.Count);
             }

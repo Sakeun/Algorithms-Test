@@ -3,7 +3,8 @@ namespace MatchingAlgorithms;
 public class SoftCodedProbabilities
 {
     #region Algorithm
-    private struct Entry {
+    private struct Entry
+    {
         public double accumulatedWeight;
         public string item;
     }
@@ -12,14 +13,17 @@ public class SoftCodedProbabilities
     private double accumulatedWeight;
     private Random rand = new Random();
 
-    public void AddEntry(string item, double weight) {
+    public void AddEntry(string item, double weight)
+    {
         accumulatedWeight += weight;
         _entries.Add(new Entry { item = item, accumulatedWeight = accumulatedWeight });
     }
 
-    public string GetRandom() {
+    public string GetRandom()
+    {
         var r = rand.NextDouble() * accumulatedWeight;
-        foreach (Entry entry in _entries) {
+        foreach (Entry entry in _entries)
+        {
             if (entry.accumulatedWeight >= r)
             {
                 var curr = entry.item;
@@ -39,13 +43,13 @@ public class SoftCodedProbabilities
         var compare = new Compare();
         var form = new Formula();
         var keywords = compare.GetIntalledKeywords(installed);
-        
+
         foreach (var a in available)
         {
             if (!compare.HasKeywords(keywords, a)) continue;
-            
+
             var result = form.WeightFormula(keywords, a);
-            Console.WriteLine($"Vector: {a.Name}, Weight: {result}");
+            //Console.WriteLine($"Vector: {a.Name}, Weight: {result}");
         }
 
         Dictionary<string, int> found = new Dictionary<string, int>();
@@ -79,18 +83,18 @@ public class SoftCodedProbabilities
                 found.Add(i3, 0);
             found[i3]++;
 
-            Console.WriteLine($"Round {i}: {i1}, {i2}, {i3}");
+            //Console.WriteLine($"Round {i}: {i1}, {i2}, {i3}");
         }
 
         var amount = found.GroupBy(x => x.Value)
             .OrderByDescending(y => y.Key);
-        
+
         foreach (var v in amount)
         {
             var str = $"{v.Key}x: ";
             str = v.Aggregate(str, (current, f) => current + $"{f.Key} ");
-            
-            Console.WriteLine(str);
+
+            //Console.WriteLine(str);
         }
     }
     private void Reset()

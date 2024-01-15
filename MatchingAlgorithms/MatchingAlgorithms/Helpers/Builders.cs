@@ -158,11 +158,11 @@ public class Builders
             edges.AddRange(GetAllEdges(vector, installed));
         }
 
-        Console.WriteLine("edges: ");
-        foreach (var e in edges)
-        {
-            Console.WriteLine($"v1: {e.Vector1}, v2: {e.Vector2}, weight: {e.Weight}");
-        }
+        //Console.WriteLine("edges: ");
+        //foreach (var e in edges)
+        //{
+        //  Console.WriteLine($"v1: {e.Vector1}, v2: {e.Vector2}, weight: {e.Weight}");
+        //}
 
         return edges;
     }
